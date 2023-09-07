@@ -1,13 +1,5 @@
-import { Backdrop, CircularProgress } from '@mui/material';
-
-type LoadingOverlayProps = {
-  isLoading: boolean;
+const LoadingOverlay = () => {
+  return <h2>🌀 Loading...</h2>;
 };
 
-export const LoadingOverlay = ({ isLoading }: LoadingOverlayProps) => {
-  return (
-    <Backdrop open={isLoading} sx={{ color: '#AAA' }}>
-      <CircularProgress color="inherit" />
-    </Backdrop>
-  );
-};
+export default LoadingOverlay;

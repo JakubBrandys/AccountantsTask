@@ -19,16 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src/",
-    "paths": {
-      "pages/*": ["pages/*"],
-      "hooks/*": ["hooks/*"],
-      "enums/*": ["enums/*"],
-      "components/*": ["components/*"],
-      "assets/*": ["assets/*"],
-      "config/*": ["config/*"]
-    }
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
