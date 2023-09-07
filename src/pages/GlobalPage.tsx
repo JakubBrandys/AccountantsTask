@@ -1,41 +1,32 @@
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+
+import infaktImage from '../../public/infaktImage.png';
+import Text from '../ui/Text';
+import { Image } from '../ui/Image';
+import { StyledLink } from '../ui/StyledLink';
 import { RouteEnum } from '../enums/RouteEnum.ts';
-import { styled } from 'styled-components';
-import infaktImage from '../assets/infaktImage.png';
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: #ffffff;
-  padding: 10px 20px;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  margin-left: 50px;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
-
-const Image = styled('img')`
-  margin-top: 48px;
-  margin-left: 84px;
-  width: 146px;
-  height: 38px;
-`;
-
 const GlobalPage = () => {
-  const location = useLocation();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   return (
-    <>
-      <Image src={infaktImage} alt="icon" />
-      {location.pathname === RouteEnum.GLOBAL_PAGE && (
-        <StyledLink to={RouteEnum.ACCOUNTANTS_PAGE}>Accountants</StyledLink>
-      )}
-      <Outlet />
-    </>
+    <div style={{ margin: '48px 50px 0' }}>
+      <nav>
+        <Image
+          onClick={() => navigate(RouteEnum.GLOBAL_PAGE)}
+          src={infaktImage}
+          alt="icon"
+        />
+      </nav>
+      <main>
+        {pathname === RouteEnum.GLOBAL_PAGE && (
+          <div>
+            <Text>If you want to fetch accountants press button</Text>
+            <StyledLink to={RouteEnum.ACCOUNTANTS_PAGE}>Accountants</StyledLink>
+          </div>
+        )}
+        <Outlet />
+      </main>
+    </div>
   );
 };
 

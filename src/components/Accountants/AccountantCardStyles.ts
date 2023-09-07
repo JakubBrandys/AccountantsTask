@@ -53,7 +53,7 @@ export const StyledParagraph = styled('p')<ParagraphProps>`
   line-height: ${(props) => props.lineheight || '1.5rem'};
   color: ${(props) => props.color || '#000'};
   margin: 0;
-  font-family: Roboto, serif;
+  font-family: Roboto, sans-serif;
   margin-top: ${(props) => props.marginTop || 0};
   margin-left: ${(props) => props.marginleft || 0};
   font-style: normal;

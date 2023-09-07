@@ -1,8 +1,9 @@
 import { AccountantService, AccountantType } from '../services/AccountantService.ts';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import AccountantCard from '../components/Accountants/AccountantCard.tsx';
 import Grid from '../ui/Grid';
 import { styled } from 'styled-components';
+import LoadingOverlay from '../components/LoadingOverlay/LoadingOverlay.tsx';
 
 export const SeeMoreBtn = styled('button')`
   border-radius: 8px;
@@ -15,7 +16,6 @@ export const SeeMoreBtn = styled('button')`
   letter-spacing: 0;
   text-align: left;
   line-height: 20px;
-  margin-left: 84px;
   margin-top: 24px;
 `;
 
@@ -23,26 +23,40 @@ const AccountantsPage = () => {
   const { getAccountants } = AccountantService();
   const [accountants, setAccountants] = useState<AccountantType[]>([]);
   const [results, setResults] = useState(4);
+  const [isLoading, setIsLoading] = useState(false);
   const fetchAccountants = async () => {
-    const resp = await getAccountants(results);
-    setAccountants(resp.results);
-    return;
+    try {
+      setIsLoading(true);
+      const resp = await getAccountants(results);
+      setAccountants(resp.results);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    fetchAccountants();
+    (async () => await fetchAccountants())();
   }, [results]);
 
-  const showMore = () => {
+  const showMore = useCallback(() => {
     setResults((val) => val + 4);
-  };
+  }, []);
 
   return (
     <>
       <Grid>
-        {accountants.map((el) => (
-          <AccountantCard key={el.id.value} accountant={el} />
-        ))}
+        {isLoading && accountants.length === 0 ? (
+          <LoadingOverlay />
+        ) : (
+          <>
+            {accountants.map((el) => (
+              <AccountantCard key={el.login.uuid} accountant={el} />
+            ))}
+            {isLoading && <LoadingOverlay />}
+          </>
+        )}
       </Grid>
       <SeeMoreBtn onClick={showMore}>Pokaż więcej</SeeMoreBtn>
     </>

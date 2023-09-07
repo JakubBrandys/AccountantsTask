@@ -14,7 +14,6 @@ export const useRequestHandling = () => {
 
   const reject = (err: Error) => {
     const error = err.message;
-
     if (Array.isArray(error)) {
       console.log('Error', error);
     }
