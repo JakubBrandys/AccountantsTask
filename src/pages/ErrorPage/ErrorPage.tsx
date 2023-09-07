@@ -1,4 +1,4 @@
-import { useErrorMessage } from 'hooks/useErrorMessage.ts';
+import { useErrorMessage } from 'hooks/useErrorMessage/useErrorMessage.ts';
 
 const ErrorPage = () => {
   const { error, errorMessage } = useErrorMessage();

@@ -1,4 +1,7 @@
-import { AccountantType } from '../../services/AccountantService.ts';
+import Flex from 'ui/Flex';
+import { theme } from 'config/theme.ts';
+import { AccountantCardProps } from 'components/Accountants/types.ts';
+
 import {
   AccountantIcon,
   Box,
@@ -7,53 +10,58 @@ import {
   StyledParagraph,
 } from './AccountantCardStyles.ts';
 
-interface AccountantCardProps {
-  accountant: AccountantType;
-}
 const AccountantCard = ({ accountant }: AccountantCardProps) => {
   return (
     <Container>
-      <div style={{ display: 'flex' }}>
+      <Flex>
         <AccountantIcon src={accountant.picture.medium} alt="thumbnail" />
-        <Box margin="0 0 0 16px">
-          <StyledParagraph color="#54585C">Twoja księgowa</StyledParagraph>
+        <Box $margin="0 0 0 16px">
+          <StyledParagraph color={theme.colors.gray}>Twoja księgowa</StyledParagraph>
           <StyledParagraph
-            fontSize="1.5rem"
+            fontSize={theme.fontSize.lg}
             fontWeight={700}
-            lineheight="32px"
+            $lineheight="32px"
             style={{ width: '172px' }}
           >{`${accountant.name.first} ${accountant.name.last}`}</StyledParagraph>
         </Box>
-      </div>
-      <Box margin="24px 0 0 0">
-        <StyledParagraph fontSize="14px" lineheight="20px" color="#54585C">
+      </Flex>
+      <Box $margin="24px 0 0 0">
+        <StyledParagraph
+          fontSize={theme.fontSize.sm}
+          $lineheight="20px"
+          color={theme.colors.gray}
+        >
           E-mail
         </StyledParagraph>
         <StyledParagraph textDecoration="underline">{accountant.email}</StyledParagraph>
       </Box>
-      <Box margin="24px 0 0 0">
-        <StyledParagraph fontSize="14px" lineheight="20px" color="#54585C">
+      <Box $margin="24px 0 0 0">
+        <StyledParagraph
+          fontSize={theme.fontSize.sm}
+          $lineheight="20px"
+          color={theme.colors.gray}
+        >
           Telefon
         </StyledParagraph>
         <StyledParagraph>{accountant.cell}</StyledParagraph>
       </Box>
-      <Box margin="24px 0 0 0">
-        <StyledParagraph color="#54585C" fontSize="14px" lineheight="20px">
+      <Box $margin="24px 0 0 0">
+        <StyledParagraph color={theme.colors.gray} fontSize="14px" $lineheight="20px">
           Średnia cena netto usługi / m-c
         </StyledParagraph>
-        <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+        <Flex>
           <StyledParagraph>350,00</StyledParagraph>
           <StyledParagraph
-            fontSize="12px"
-            lineheight="16px"
+            fontSize={theme.fontSize.xs}
+            $lineheight="16px"
             style={{ alignSelf: 'center' }}
-            marginleft="4px"
+            $marginleft="4px"
           >
             PLN
           </StyledParagraph>
-        </div>
+        </Flex>
       </Box>
-      <Box margin="24px 0 0 0" style={{ alignItems: 'flex-start' }}>
+      <Box $margin="24px 0 0 0" style={{ alignItems: 'flex-start' }}>
         <MoreInfoBtn>Dowiedz się więcej</MoreInfoBtn>
       </Box>
     </Container>

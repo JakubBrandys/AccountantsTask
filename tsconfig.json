@@ -24,6 +24,7 @@
     "paths": {
       "assets/*": ["assets/*"],
       "components/*": ["components/*"],
+      "ui/*": ["ui/*"],
       "config/*": ["config/*"],
       "enums/*": ["enums/*"],
       "hooks/*": ["hooks/*"],
