@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
-import './App.css';
-import LoadingOverlay from './components/LoadingOverlay/LoadingOverlay.tsx';
 import { RouterProvider } from 'react-router-dom';
-import { router } from './config/router.tsx';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './config/Theme.ts';
+
+import { router } from 'config/router.tsx';
+import { theme } from 'config/Theme.ts';
+import LoadingOverlay from './components/LoadingOverlay/LoadingOverlay.tsx';
 
 function App() {
   return (
