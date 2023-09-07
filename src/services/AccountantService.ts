@@ -8,8 +8,8 @@ export type AccountantType = {
   };
   id: {
     name: string;
-    value: string
-  },
+    value: string;
+  };
   email: string;
   picture: { thumbnail: string; medium: string };
   login: {
@@ -26,11 +26,13 @@ export const AccountantService = () => {
   const seed = 'abc';
   const gender = 'female';
   const page = 1;
-  const results = 5;
+  const results = 4;
 
   const apiUrl = `https://randomuser.me/api/?seed=${seed}&gender=${gender}&page=${page}&results=${results}`;
 
   const getAccountants = async () => {
+    try {
+    } catch (e) {}
     const response = await axios.get(apiUrl);
     return response.data as AccountantResponseType;
   };
