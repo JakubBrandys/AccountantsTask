@@ -4,19 +4,19 @@ interface BoxProps {
 }
 
 interface ParagraphProps {
-  textColor?: string;
+  color?: string;
   fontSize?: string;
   fontWeight?: number;
   textDecoration?: string;
-  marginLeft?: string
-  marginTop?: string
-  lineHeight?: string
+  marginleft?: string;
+  marginTop?: string;
+  lineheight?: string;
 }
 export const Container = styled('div')`
   border-radius: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   width: 300px;
-  min-width: 300px;
+  margin-right: 24px;
   height: 376px;
   padding: 24px;
   box-sizing: border-box;
@@ -46,13 +46,16 @@ export const MoreInfoBtn = styled('button')`
 `;
 
 export const StyledParagraph = styled('p')<ParagraphProps>`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: ${(props) => props.fontSize || '1rem'};
-  line-height: ${(props) => props.lineHeight || '1.5rem'};
-  color: ${(props) => props.textColor || '#000'};
+  line-height: ${(props) => props.lineheight || '1.5rem'};
+  color: ${(props) => props.color || '#000'};
   margin: 0;
-  font-family: Roboto,serif;
+  font-family: Roboto, serif;
   margin-top: ${(props) => props.marginTop || 0};
-  margin-left: ${(props) => props.marginLeft || 0};
+  margin-left: ${(props) => props.marginleft || 0};
   font-style: normal;
   font-weight: ${(props) => props.fontWeight || 400};
   text-decoration: ${(props) => props.textDecoration || 'none'};

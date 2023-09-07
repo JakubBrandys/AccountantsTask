@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useRequestHandling } from '../hooks/useRequestHandling.ts';
 
 export type AccountantType = {
   cell: string;
@@ -22,19 +23,19 @@ export type AccountantResponseType = {
     page: number;
   };
 };
+
 export const AccountantService = () => {
-  const seed = 'abc';
-  const gender = 'female';
-  const page = 1;
-  const results = 4;
+  const { resolve } = useRequestHandling();
+  const SEED = 'abc';
+  const GENDER = 'female';
+  const PAGE = 1;
+  const APIURL = `https://randomuser.me/api/?seed=${SEED}&gender=${GENDER}`;
 
-  const apiUrl = `https://randomuser.me/api/?seed=${seed}&gender=${gender}&page=${page}&results=${results}`;
-
-  const getAccountants = async () => {
-    try {
-    } catch (e) {}
-    const response = await axios.get(apiUrl);
-    return response.data as AccountantResponseType;
+  const getAccountants = async (results: number) => {
+    const response = await axios.get<AccountantResponseType>(
+      `${APIURL}&page=${PAGE}&results=${results}`,
+    );
+    return resolve(response);
   };
   return {
     getAccountants,

@@ -1,12 +1,9 @@
-import {Link, Outlet, useLocation} from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { RouteEnum } from '../enums/RouteEnum.ts';
 import { styled } from 'styled-components';
 import infaktImage from '../assets/infaktImage.png';
 
 const StyledLink = styled(Link)`
-  position: absolute;
-  right: 25px;
-  top: 25px;
   text-decoration: none;
   color: #ffffff;
   padding: 10px 20px;
@@ -15,6 +12,7 @@ const StyledLink = styled(Link)`
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  margin-left: 50px;
 
   &:hover {
     background-color: #0056b3;
@@ -27,16 +25,17 @@ const Image = styled('img')`
   width: 146px;
   height: 38px;
 `;
-const GlobalPage = () => {
-    const location = useLocation()
 
- console.log(location.pathname)
+const GlobalPage = () => {
+  const location = useLocation();
   return (
-    <div style={{ width: '100%'}}>
+    <>
       <Image src={infaktImage} alt="icon" />
-      <StyledLink to={RouteEnum.ACCOUNTANTS_PAGE}>Accountants</StyledLink>
+      {location.pathname === RouteEnum.GLOBAL_PAGE && (
+        <StyledLink to={RouteEnum.ACCOUNTANTS_PAGE}>Accountants</StyledLink>
+      )}
       <Outlet />
-    </div>
+    </>
   );
 };
 
